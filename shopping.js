@@ -1,6 +1,20 @@
+const displayLocalStorageCart = () => {
+    const cart = getCart();
+    // apply for every name
+    for (const name in cart){
+        displayProduct(name);
+    }
+}
+
 const addItem = () => {
     const nameField = document.getElementById('product-name');
     const name = nameField.value;
+
+    // if name field is empty then it won't execut the rest part
+    if (!name){
+        return;
+    }
+
     // display in UL
     displayProduct(name);
 
@@ -35,5 +49,7 @@ const addProductToCart = name => {
     console.log(cart);
     const cartStringified = JSON.stringify(cart);
     localStorage.setItem('cart', cartStringified);
-    
 }
+
+// we need to initiaze getCart first
+displayLocalStorageCart();
